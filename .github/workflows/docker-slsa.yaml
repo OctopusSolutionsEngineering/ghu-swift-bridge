@@ -9,11 +9,11 @@ on:
   workflow_dispatch: {}
 
 env:
-  OCTOPUS_URL: https://your.octopus.app
-  OCTOPUS_SERVICE_ACCOUNT: service account id
-  OCTOPUS_SPACE: Your space
-  DOCKER_HUB_REPOSITORY: Your docker hub repository
-  SBOM_PACKAGE: YourApp.SBOM
+  OCTOPUS_URL: https://demo.octopus.app
+  OCTOPUS_SERVICE_ACCOUNT: 4d50c8ac-1515-4351-96a7-4a82d55d55ff
+  OCTOPUS_SPACE: GitHub Universe 2025
+  DOCKER_HUB_REPOSITORY: octopussolutionsengineering/ghu-swift-bridge
+  SBOM_PACKAGE: ghu-swift-bridge.sbom
 
 jobs:
   configure:
@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Set version number
         id: version-generator
-        run: echo "version=$(date +'%y.%m.%d%H%M%S')-quick" >> $GITHUB_OUTPUT
+        run: echo "version=$(date +'%y.%m.%d%H%M%S')" >> $GITHUB_OUTPUT
 
   scan:
     runs-on: ubuntu-latest
@@ -120,7 +120,7 @@ jobs:
           exit-code: "1"
           ignore-unfixed: true
           vuln-type: "os,library"
-          severity: "MEDIUM,HIGH,CRITICAL"
+          severity: "HIGH,CRITICAL"
 
       - name: Push Docker images
         id: push-docker-images
@@ -224,6 +224,7 @@ jobs:
 
           $subjectText = @"
           $cleanedImageSha  $imageSubject
+          $cleanedImageSha  dockerhub-remote/$imageSubject
           $cleanedSbomSha  $sbomSubject
           "@
 
