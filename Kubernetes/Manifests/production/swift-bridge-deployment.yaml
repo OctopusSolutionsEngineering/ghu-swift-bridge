@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swift-bridge-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: swift-bridge-service
+  template:
+    metadata:
+      labels:
+        component: swift-bridge-service
+    spec:
+      containers:
+        - name: swift-bridge
+          image: octopussolutionsengineering/ghu-swift-bridge:25.10.10181557
+          ports:
+            - name: http-route
+              containerPort: 80

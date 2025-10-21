@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: swift-bridge-production
+  annotations:
+    argo.octopus.com/project: "Swift Bridge"
+    argo.octopus.com/environment: "production"
+spec:
+  project: default
+  source:
+     repoURL: https://github.com/OctopusSolutionsEngineering/ghu-swift-bridge.git
+     targetRevision: HEAD
+     path: Kubernetes/Manifests/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:  
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - Validate=false
+    - CreateNamespace=true
