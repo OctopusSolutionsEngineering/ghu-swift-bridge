@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: swift-bridge-test
   annotations:
-    argo.octopus.com/project: "Swift Bridge"
+    argo.octopus.com/project: "swift-bridge"
     argo.octopus.com/environment: "test"
 spec:
   project: default

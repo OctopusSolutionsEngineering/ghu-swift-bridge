@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: swift-bridge-staging
   annotations:
-    argo.octopus.com/project: "Swift Bridge"
+    argo.octopus.com/project: "swift-bridge"
     argo.octopus.com/environment: "staging"
 spec:
   project: default
