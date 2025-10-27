@@ -6,6 +6,8 @@ on:
   #    - "API/**"
   #  branches:
   #    - main
+  schedule:
+    - cron: "12 13-22 * * 1-5"
   workflow_dispatch: {}
 
 env:
