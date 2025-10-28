@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: swift-bridge
-          image: octopussolutionsengineering/ghu-swift-bridge:25.10.28212128
+          image: octopussolutionsengineering/ghu-swift-bridge:25.10.28222140
           ports:
             - name: http-route
               containerPort: 80
