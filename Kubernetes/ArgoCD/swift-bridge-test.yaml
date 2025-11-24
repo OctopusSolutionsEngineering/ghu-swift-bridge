@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: swift-bridge-homologation
+  name: swift-bridge-test
   annotations:
     argo.octopus.com/project: "swift-bridge"
-    argo.octopus.com/environment: "homologation"
+    argo.octopus.com/environment: "test"
 spec:
   project: default
   source:
      repoURL: https://github.com/OctopusSolutionsEngineering/ghu-swift-bridge.git
      targetRevision: HEAD
-     path: Kubernetes/Manifests/homologation
+     path: Kubernetes/Manifests/test
   destination:
     server: https://kubernetes.default.svc
-    namespace: homologation
+    namespace: test
   syncPolicy:
     automated:  
       prune: true
