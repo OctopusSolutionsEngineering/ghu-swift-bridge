@@ -9,9 +9,9 @@ on:
   workflow_dispatch: {}
 
 env:
-  OCTOPUS_URL: https://demo.octopus.app
-  OCTOPUS_SERVICE_ACCOUNT: 4d50c8ac-1515-4351-96a7-4a82d55d55ff
-  OCTOPUS_SPACE: GitHub Universe 2025
+  OCTOPUS_URL: https://wrg.octopus.app
+  OCTOPUS_SERVICE_ACCOUNT: b45a10cc-1380-480d-ab25-28e36d54cd63
+  OCTOPUS_SPACE: New Cascadia Imports
   DOCKER_HUB_REPOSITORY: octopussolutionsengineering/ghu-swift-bridge
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
 
       - name: Set version number
         id: version-generator
-        run: echo "version=$(date +'%y.%m.%d%H%M%S')-quick" >> $GITHUB_OUTPUT
+        run: echo "version=$(date +'%y.%m.%d%H%M%S')" >> $GITHUB_OUTPUT
 
       - name: Login to Octopus Deploy
         uses: OctopusDeploy/login@v1
