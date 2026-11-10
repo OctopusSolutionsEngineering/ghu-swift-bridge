@@ -262,18 +262,3 @@ jobs:
           release_number: "${{ needs.configure.outputs.version }}"
           package_version: "${{ needs.configure.outputs.version }}"
           #git_ref: ${{ (github.ref_type == 'tag' && github.event.repository.default_branch ) || (github.head_ref || github.ref) }}
-
-      - name: Deploy Release to Development
-        id: deploy_a_release
-        uses: OctopusDeploy/deploy-release-action@v3
-        with:
-          project: "Swift Bridge"
-          space: "${{ env.OCTOPUS_SPACE }}"
-          release_number: "${{ needs.configure.outputs.version }}"
-          environments: "Development"
-
-      - name: Await task in Octopus Deploy 🐙
-        id: await_task_in_octopus_deploy
-        uses: OctopusDeploy/await-task-action@v4
-        with:
-          server_task_id: ${{ fromJson(steps.deploy_a_release.outputs.server_tasks)[0].serverTaskId }}
