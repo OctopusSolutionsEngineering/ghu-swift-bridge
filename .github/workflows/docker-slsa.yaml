@@ -127,8 +127,9 @@ jobs:
         working-directory: ./API
         run: |
           docker push $DOCKER_HUB_REPOSITORY:${{ needs.configure.outputs.version }}
-
-          dockerSha=$(docker manifest inspect $DOCKER_HUB_REPOSITORY:${{ needs.configure.outputs.version }} -v | jq -r '.Descriptor.digest')
+          
+          #dockerSha=$(docker manifest inspect $DOCKER_HUB_REPOSITORY:${{ needs.configure.outputs.version }} -v | jq -r '.Descriptor.digest')
+          dockerSha=$(docker inspect --format='{{index .RepoDigests 0}}' $DOCKER_HUB_REPOSITORY:${{ needs.configure.outputs.version }})
           echo "Docker sha is $dockerSha"            
           echo "DEMO_APP_DOCKER_SHA=$dockerSha" >> $GITHUB_OUTPUT
 
